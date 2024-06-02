@@ -39,10 +39,11 @@ public class BaseRepository<T> where T : BaseEntity, new()
         return entry.Entity;
     }
 
-    public T Delete(Guid id)
+    public async Task<T> DeleteAsync(Guid id)
     {
         var entity = new T { Id = id };
         var entry = _dbContext.Set<T>().Remove(entity);
+        await _dbContext.SaveChangesAsync();
         return entry.Entity;
     }
 

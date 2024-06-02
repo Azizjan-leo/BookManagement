@@ -15,6 +15,14 @@ public sealed class AuthorController : ControllerBase
         _authorService=authorService;
     }
 
+    [HttpDelete]
+    public async Task<OperationResult> Delete(Guid id)
+    {
+        var result = await _authorService.DeleteAuthorAsync(id);
+
+        return result;
+    }
+
     [HttpGet]
     public async Task<List<AuthorModel>> Get()
     {

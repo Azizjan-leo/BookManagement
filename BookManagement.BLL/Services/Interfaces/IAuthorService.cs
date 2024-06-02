@@ -4,11 +4,12 @@ namespace BookManagement.BLL.Services.Interfaces;
 
 public interface IAuthorService
 {
-    public Task<OperationResult> AddAuthorAsync(AuthorModel author);
+    Task<OperationResult> AddAuthorAsync(AuthorModel author);
 
-    public Task<OperationResult> UpdateAuthorAsync(AuthorModel author);
+    Task<OperationResult> UpdateAuthorAsync(AuthorModel author);
 
-    public Task<List<AuthorModel>> GetAllAuthorsAsync();
+    Task<List<AuthorModel>> GetAllAuthorsAsync();
 
-    public Task<AuthorModel?> GetAuthorByIdAsync(Guid id);
+    Task<AuthorModel?> GetAuthorByIdAsync(Guid id);
+    Task<OperationResult> DeleteAuthorAsync(Guid id);
 }
