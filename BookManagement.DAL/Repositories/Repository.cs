@@ -1,4 +1,5 @@
 ﻿using BookManagement.Model.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookManagement.DAL.Repositories;
 
@@ -11,17 +12,24 @@ public class BaseRepository<T> where T : BaseEntity, new()
         _dbContext = context;
     }
 
-    public T Create(T entity)
+    public async Task<List<T>> GetValuesAsync()
+    {
+        var query = _dbContext.Set<T>().AsQueryable();
+
+        return await query.ToListAsync();
+    }
+
+    public async Task<T> CreateAsync(T entity)
     {
         var entry = _dbContext.Set<T>().Add(entity);
+        await _dbContext.SaveChangesAsync();
         return entry.Entity;
     }
 
-    public T Update(Action<T> updater)
+    public async Task<T> UpdateAsync(T entity)
     {
-        var entity = new T();
-        updater(entity);
         var entry = _dbContext.Set<T>().Update(entity);
+        await _dbContext.SaveChangesAsync();
         return entry.Entity;
     }
 
