@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using BookManagement.DAL.Repositories;
-using BookManagement.Model;
 using BookManagement.Model.Entities;
+using BookManagement.Model;
+using BookManagement.BLL.Services.Interfaces;
 
-namespace BookManagement.BLL.Services.Interfaces;
-public sealed class AuthorService(AuthorRepository _authorRepository, IMapper _mapper)
+namespace BookManagement.BLL.Services;
+public sealed class AuthorService(AuthorRepository _authorRepository, IMapper _mapper) : IAuthorService
 {
     public async Task<OperationResult> AddAuthor(AuthorModel authorModel)
     {
@@ -16,6 +17,6 @@ public sealed class AuthorService(AuthorRepository _authorRepository, IMapper _m
 
         await _authorRepository.SaveChangesAsync();
 
-        return new OperationResult{ IsSucceed = false };
+        return new OperationResult { IsSucceed = true, Message = "New author has been added." };
     }
 }
