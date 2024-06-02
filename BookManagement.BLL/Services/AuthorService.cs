@@ -15,7 +15,14 @@ public sealed class AuthorService(AuthorRepository _authorRepository, IMapper _m
 
         await _authorRepository.CreateAsync(author);
 
-        return new OperationResult { IsSucceed = true, Message = "New author has been added." };
+        var result = new OperationResult
+        {
+            IsSucceed = true,
+            Message = "New author has been added.",
+            Value = _mapper.Map<AuthorModel>(author)
+        };
+
+        return result;
     }
 
     public async Task<OperationResult> DeleteAuthorAsync(Guid id)

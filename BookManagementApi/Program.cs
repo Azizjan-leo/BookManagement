@@ -32,8 +32,11 @@ var mapperConfig = new MapperConfiguration(mc =>
 IMapper mapper = mapperConfig.CreateMapper();
 
 builder.Services.AddSingleton(mapper);
-builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<AuthorRepository>();
+builder.Services.AddScoped<GenreRepository>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IGenreService, GenreService>();
+
 
 var app = builder.Build();
 
