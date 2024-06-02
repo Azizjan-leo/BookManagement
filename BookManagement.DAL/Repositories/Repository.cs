@@ -12,6 +12,12 @@ public class BaseRepository<T> where T : BaseEntity, new()
         _dbContext = context;
     }
 
+    public async Task<T?> GetAsync(Guid id)
+    {
+        T? entity = await _dbContext.Set<T>().FindAsync(id);
+
+        return entity;
+    }
     public async Task<List<T>> GetValuesAsync()
     {
         var query = _dbContext.Set<T>().AsQueryable();

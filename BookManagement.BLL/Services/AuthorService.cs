@@ -7,7 +7,7 @@ using BookManagement.BLL.Services.Interfaces;
 namespace BookManagement.BLL.Services;
 public sealed class AuthorService(AuthorRepository _authorRepository, IMapper _mapper) : IAuthorService
 {
-    public async Task<OperationResult> AddAuthor(AuthorModel authorModel)
+    public async Task<OperationResult> AddAuthorAsync(AuthorModel authorModel)
     {
         ArgumentNullException.ThrowIfNull(authorModel);
 
@@ -18,7 +18,7 @@ public sealed class AuthorService(AuthorRepository _authorRepository, IMapper _m
         return new OperationResult { IsSucceed = true, Message = "New author has been added." };
     }
 
-    public async Task<List<AuthorModel>> GetAllAuthors()
+    public async Task<List<AuthorModel>> GetAllAuthorsAsync()
     {
         var authors = await _authorRepository.GetValuesAsync();
 
@@ -27,7 +27,16 @@ public sealed class AuthorService(AuthorRepository _authorRepository, IMapper _m
         return models;
     }
 
-    public async Task<OperationResult> UpdateAuthor(AuthorModel authorModel)
+    public async Task<AuthorModel?> GetAuthorByIdAsync(Guid id)
+    {
+        var author = await _authorRepository.GetAsync(id);
+
+        var authorModel = _mapper.Map<AuthorModel>(author);
+
+        return authorModel;
+    }
+
+    public async Task<OperationResult> UpdateAuthorAsync(AuthorModel authorModel)
     {
         ArgumentNullException.ThrowIfNull(authorModel);
 
