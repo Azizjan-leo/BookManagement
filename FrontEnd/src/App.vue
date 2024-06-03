@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+
 </script>
 
 <template>
@@ -24,7 +24,9 @@ import HelloWorld from './components/HelloWorld.vue'
         <li class="nav-item">
           <RouterLink class="nav-link active" to="/books">Books</RouterLink>
         </li>
-       
+        <li class="nav-item">
+          <RouterLink class="nav-link active" to="/genres">Genres</RouterLink>
+        </li>
       </ul>
   
     </div>
