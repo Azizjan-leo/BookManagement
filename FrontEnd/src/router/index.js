@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import BookView from '../views/books/View.vue'
 import GenreView from '../views/genres/View.vue'
+import GenreCreateView from '../views/genres/Create.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,6 +30,11 @@ const router = createRouter({
       name: 'genres',
       component: GenreView
     },
+    {
+      path: '/genres/create',
+      name: 'genreCreate',
+      component: GenreCreateView
+    }
   ]
 })
 

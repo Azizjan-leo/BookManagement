@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="container">
          <div class="card">
              <div class="card-header">
                  <h4>Genres
-                     <RouterLink to="/genre/create" class="btn btn-primary float-end">
+                     <RouterLink to="/genres/create" class="btn btn-primary float-end">
                          Add Genre
                      </RouterLink>
                  </h4>
@@ -25,7 +25,9 @@
                                 <RouterLink to="/" class="btn btn-success">
                                     Edit
                                 </RouterLink>
-                                <button type="button" class="btn btn-danger">Delete</button>
+                                <button type="button" class="btn btn-danger">
+                                    Delete
+                                </button>
                             </td>
                          </tr>
                      </tbody>
