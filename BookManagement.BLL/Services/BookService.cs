@@ -4,6 +4,7 @@ using BookManagement.Model.Entities;
 using BookManagement.Model;
 using BookManagement.BLL.Services.Interfaces;
 using BookManagement.Infrastructure.Models;
+using BookManagement.Infrastructure.Filters;
 
 namespace BookManagement.BLL.Services;
 public sealed class BookService(BookRepository _bookRepository, IMapper _mapper) 
@@ -32,9 +33,9 @@ public sealed class BookService(BookRepository _bookRepository, IMapper _mapper)
         return new OperationResult { IsSucceed = true, Message = "The book has been removed" };
     }
 
-    public async Task<List<BookModel>> GetAllBooksAsync()
+    public async Task<List<BookModel>> GetAllBooksAsync(BookFilter filter)
     {
-        var books = await _bookRepository.GetAllBooksAsync();
+        var books = await _bookRepository.GetAllBooksAsync(filter);
 
         var models = _mapper.Map<List<BookModel>>(books);
 

@@ -1,4 +1,5 @@
 ﻿using BookManagement.BLL.Services.Interfaces;
+using BookManagement.Infrastructure.Filters;
 using BookManagement.Infrastructure.Models;
 using BookManagement.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -25,9 +26,9 @@ public sealed class BookController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<List<BookModel>> Get()
+    public async Task<List<BookModel>> Get([FromQuery] BookFilter filter)
     {
-        var books = await _bookService.GetAllBooksAsync();
+        var books = await _bookService.GetAllBooksAsync(filter);
 
         return books;
     }
