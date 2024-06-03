@@ -7,54 +7,54 @@ namespace BookManagement.API.Controllers;
 
 [Route("[controller]")]
 [ApiController]
-public sealed class GenreController : ControllerBase
+public sealed class BookController : ControllerBase
 {
-    private readonly IGenreService _genreService;
+    private readonly IBookService _bookService;
 
-    public GenreController(IGenreService authorService)
+    public BookController(IBookService bookService)
     {
-        _genreService=authorService;
+        _bookService=bookService;
     }
 
     [HttpDelete]
     public async Task<OperationResult> Delete(Guid id)
     {
-        var result = await _genreService.DeleteGenreAsync(id);
+        var result = await _bookService.DeleteBookAsync(id);
 
         return result;
     }
 
     [HttpGet]
-    public async Task<List<GenreModel>> Get()
+    public async Task<List<BookModel>> Get()
     {
-        var genres = await _genreService.GetAllGenresAsync();
+        var books = await _bookService.GetAllBooksAsync();
 
-        return genres;
+        return books;
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult> Get(Guid id)
     {
-        var genreModel = await _genreService.GetGenreByIdAsync(id);
+        var bookModel = await _bookService.GetBookByIdAsync(id);
 
-        if (genreModel is null)
+        if (bookModel is null)
             return NotFound();
 
-        return Ok(genreModel);
+        return Ok(bookModel);
     }
 
     [HttpPut]
-    public async Task<OperationResult> Put(GenreModel genreModel)
+    public async Task<OperationResult> Put(PutBookModel bookModel)
     {
         try
         {
             var result = new OperationResult() { IsSucceed = false };
 
-            if(genreModel.Id is null)
-                result = await _genreService.AddGenreAsync(genreModel);
+            if(bookModel.Id is null)
+                result = await _bookService.AddBookAsync(bookModel);
 
             else
-                result = await _genreService.UpdateGenreAsync(genreModel);
+                result = await _bookService.UpdateBookAsync(bookModel);
 
             return result;
         }

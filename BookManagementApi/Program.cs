@@ -34,8 +34,10 @@ IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddScoped<AuthorRepository>();
 builder.Services.AddScoped<GenreRepository>();
+builder.Services.AddScoped<BookRepository>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IGenreService, GenreService>();
+builder.Services.AddScoped<IBookService, BookService>();
 
 
 var app = builder.Build();

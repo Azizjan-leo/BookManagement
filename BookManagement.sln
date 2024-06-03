@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManagement.BLL", "BookM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManagement.DAL", "BookManagement.DAL\BookManagement.DAL.csproj", "{535D19DF-B941-4771-8E53-AE3E32AE523B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManagement.Model", "BookManagement.Model\BookManagement.Model.csproj", "{0E786B54-DE2E-4581-A270-CBD3DFCAA176}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManagement.Infrastructure", "BookManagement.Model\BookManagement.Infrastructure.csproj", "{0E786B54-DE2E-4581-A270-CBD3DFCAA176}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

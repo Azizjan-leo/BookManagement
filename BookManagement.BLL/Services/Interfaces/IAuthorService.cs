@@ -1,4 +1,5 @@
-﻿using BookManagement.Model;
+﻿using BookManagement.Infrastructure.Models;
+using BookManagement.Model;
 
 namespace BookManagement.BLL.Services.Interfaces;
 

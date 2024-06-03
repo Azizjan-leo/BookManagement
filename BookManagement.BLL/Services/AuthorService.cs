@@ -3,6 +3,7 @@ using BookManagement.DAL.Repositories;
 using BookManagement.Model.Entities;
 using BookManagement.Model;
 using BookManagement.BLL.Services.Interfaces;
+using BookManagement.Infrastructure.Models;
 
 namespace BookManagement.BLL.Services;
 public sealed class AuthorService(AuthorRepository _authorRepository, IMapper _mapper) : IAuthorService

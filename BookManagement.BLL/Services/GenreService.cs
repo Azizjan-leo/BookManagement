@@ -3,6 +3,7 @@ using BookManagement.DAL.Repositories;
 using BookManagement.Model.Entities;
 using BookManagement.Model;
 using BookManagement.BLL.Services.Interfaces;
+using BookManagement.Infrastructure.Models;
 
 namespace BookManagement.BLL.Services;
 public sealed class GenreService(GenreRepository _genreRepository, IMapper _mapper) 
@@ -61,7 +62,7 @@ public sealed class GenreService(GenreRepository _genreRepository, IMapper _mapp
         { 
             IsSucceed = true, 
             Value = genreModel,  
-            Message = "Author has been updated"
+            Message = "The genre has been updated"
         }; 
 
         return result;
