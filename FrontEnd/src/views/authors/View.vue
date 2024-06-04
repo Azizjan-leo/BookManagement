@@ -2,7 +2,7 @@
     <div class="container">
          <div class="card">
              <div class="card-header">
-                 <h4>Genres
+                 <h4>Authors
                      <RouterLink to="/genres/create" class="btn btn-primary float-end">
                          Add Genre
                      </RouterLink>

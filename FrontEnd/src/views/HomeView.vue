@@ -3,3 +3,8 @@
    <h1>This is Home Page</h1>
   </main>
 </template>
+
+<script>
+
+
+</script>

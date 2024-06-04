@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 
 export default{
     name: 'books',
@@ -40,6 +42,13 @@ export default{
     mounted(){
 
         console.log('i am here');
+    },
+    method: {
+        getBooks(){
+            axios.get().then(res => {
+                
+            })
+        }
     }
 }
 </script>

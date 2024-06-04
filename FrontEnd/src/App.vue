@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import axios from 'axios';
+
 </script>
 
 <template>
@@ -23,6 +23,9 @@ import axios from 'axios';
         </li>
         <li class="nav-item">
           <RouterLink class="nav-link active" to="/books">Books</RouterLink>
+        </li>
+        <li class="nav-item">
+          <RouterLink class="nav-link active" to="/authors">Authors</RouterLink>
         </li>
         <li class="nav-item">
           <RouterLink class="nav-link active" to="/genres">Genres</RouterLink>

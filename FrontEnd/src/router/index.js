@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import BookView from '../views/books/View.vue'
 import GenreView from '../views/genres/View.vue'
 import GenreCreateView from '../views/genres/Create.vue'
+import GenreEditView from '../views/genres/Edit.vue'
+import AuthorView from '../views/authors/View.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,9 +33,19 @@ const router = createRouter({
       component: GenreView
     },
     {
+      path: '/authors',
+      name: 'authors',
+      component: AuthorView
+    },
+    {
       path: '/genres/create',
       name: 'genreCreate',
       component: GenreCreateView
+    },
+    {
+      path: '/genres/:id/edit',
+      name: 'genreEdit',
+      component: GenreEditView
     }
   ]
 })

@@ -3,7 +3,7 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <h4>Add Genre</h4>
+                <h4>Edit Genre</h4>
             </div>
             <div class="card-body">
                 <div class="mb-3">
@@ -33,17 +33,26 @@ export default {
         return{
             model: {
                 genre: {
+                    id: '',
                     name: '',
                     description: ''
                 }
             }
         }
     },
+    mounted(){
+        this.getGenre(this.$route.params.id);
+    },
     methods: {
+        getGenre(genreId){
+            axios.get(this.$config.apiBaseUrl + '/Genre/' + genreId)
+                .then(res => {
+                    this.model.genre = res.data;
+                });
+        },
         saveGenre(){
             axios.put(this.$config.apiBaseUrl + '/Genre', this.model.genre)
                 .then(res => {
-                    console.log(res);
                     alert(res.data.message);
                     if(res.status == 200)
                      router.push('/genres');
