@@ -3,8 +3,8 @@
          <div class="card">
              <div class="card-header">
                  <h4>Authors
-                     <RouterLink to="/genres/create" class="btn btn-primary float-end">
-                         Add Genre
+                     <RouterLink to="/authors/create" class="btn btn-primary float-end">
+                         Add Author
                      </RouterLink>
                  </h4>
              </div>
@@ -13,19 +13,19 @@
                      <thead>
                          <tr>
                              <th>Name</th>
-                             <th>Description</th>
+                             <th>Bio</th>
                              <th></th>
                          </tr>
                      </thead>
                      <tbody>
-                         <tr v-for="(genre, index) in this.genres" :key="index">
-                            <td>{{ genre.name }}</td>
-                            <td>{{ genre.description }}</td>
+                         <tr v-for="(author, index) in this.authors" :key="index">
+                            <td>{{ author.name }}</td>
+                            <td>{{ author.bio }}</td>
                             <td>
-                                <RouterLink :to="{path: '/genres/' + genre.id + '/edit'}" class="btn btn-success">
+                                <RouterLink :to="{path: '/authors/' + author.id + '/edit'}" class="btn btn-success">
                                     Edit
                                 </RouterLink>
-                                <button type="button" @click="deleteGenre(genre.id)" class="btn btn-danger">
+                                <button type="button" @click="deleteAuthor(author.id)" class="btn btn-danger">
                                     Delete
                                 </button>
                             </td>
@@ -42,28 +42,28 @@
  
  
  export default{
-     name: 'genres',
+     name: 'authors',
      data(){
          return {
-             genres: []
+             authors: []
          }
      },
      mounted(){
-        this.getGenres();
+        this.getAuthors();
      },
      methods: {
 
-        getGenres(){
-            axios.get(this.$config.apiBaseUrl + '/Genre').then(res => {
-                this.genres = res.data;
+        getAuthors(){
+            axios.get(this.$config.apiBaseUrl + '/Author').then(res => {
+                this.authors = res.data;
             });
         },
 
-        deleteGenre(genreId){
-            axios.delete(this.$config.apiBaseUrl + '/Genre?id=' + genreId)
+        deleteAuthor(authorId){
+            axios.delete(this.$config.apiBaseUrl + '/Author?id=' + authorId)
                 .then(res => {
                     alert(res.data.message);
-                    this.getGenres();
+                    this.getAuthors();
                 });
         }
      }

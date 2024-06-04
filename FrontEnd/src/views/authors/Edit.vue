@@ -3,19 +3,19 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <h4>Edit Genre</h4>
+                <h4>Edit Author</h4>
             </div>
             <div class="card-body">
                 <div class="mb-3">
                     <label for="">Name</label>
-                    <input type="text" v-model="model.genre.name" class="form-control" />
+                    <input type="text" v-model="model.author.name" class="form-control" />
                 </div>
                 <div class="mb-3">
-                    <label for="">Description</label>
-                    <input type="text" v-model="model.genre.description" class="form-control" />
+                    <label for="">Bio</label>
+                    <input type="text" v-model="model.author.bio" class="form-control" />
                 </div>
                 <div class="mb-3">
-                    <button type="button" @click="saveGenre" class="btn btn-primary">Save</button>
+                    <button type="button" @click="saveAuthor" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>
@@ -28,34 +28,34 @@ import axios from 'axios';
 import router from '@/router';
 
 export default {
-    name: 'genreCreate',
+    name: 'authorEdit',
     data(){
         return{
             model: {
-                genre: {
+                author: {
                     id: '',
                     name: '',
-                    description: ''
+                    bio: ''
                 }
             }
         }
     },
     mounted(){
-        this.getGenre(this.$route.params.id);
+        this.getAuthor(this.$route.params.id);
     },
     methods: {
-        getGenre(genreId){
-            axios.get(this.$config.apiBaseUrl + '/Genre/' + genreId)
+        getAuthor(authorId){
+            axios.get(this.$config.apiBaseUrl + '/Author/' + authorId)
                 .then(res => {
-                    this.model.genre = res.data;
+                    this.model.author = res.data;
                 });
         },
-        saveGenre(){
-            axios.put(this.$config.apiBaseUrl + '/Genre', this.model.genre)
+        saveAuthor(){
+            axios.put(this.$config.apiBaseUrl + '/Author', this.model.author)
                 .then(res => {
                     alert(res.data.message);
                     if(res.status == 200)
-                     router.push('/genres');
+                     router.push('/authors');
                 });
         }
 
