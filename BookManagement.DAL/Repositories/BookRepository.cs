@@ -16,7 +16,7 @@ public sealed class BookRepository(ApplicationDbContext context) : BaseRepositor
             booksQuery = booksQuery.Where(x => x.Author.Name.Contains(filter.Author));
 
         if(!string.IsNullOrEmpty(filter.Title))
-            booksQuery = booksQuery.Where(x => x.Author.Name.Contains(filter.Title));
+            booksQuery = booksQuery.Where(x => x.Title.Contains(filter.Title));
 
         if (filter.GenreId is not null)
             booksQuery = booksQuery.Where(x => x.Genre.Id == filter.GenreId);

@@ -81,12 +81,12 @@
          return {
             genres: [],
             filter: {
-                author: '',
+                Author: '',
                 Title: '',
                 GenreId: '',
-                SortByYear: '',
-                SortByAuthor: '',
-                SortByTitle: '',
+                SortByYear: false,
+                SortByAuthor: false,
+                SortByTitle: false,
              },
              books: []
          }
@@ -105,13 +105,12 @@
             });
         },
         getBooks(){
-            this.filter.author = 'ddfdfdfdfdf';
-            console.log(this.filter);
-            axios.get(this.$config.apiBaseUrl + '/Book', {params: {
-   filter: this.filter
-  }}).then(res => {
-                this.books = res.data;
-            });
+           
+            axios.get(this.$config.apiBaseUrl + '/Book', {
+                params: this.filter
+            }).then(res => {
+                             this.books = res.data;
+                         });
         },
 
         deleteBook(bookId){
