@@ -9,10 +9,42 @@
                  </h4>
              </div>
              <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                         <tr>
+                            <th>Search Title</th>
+                             <th>Search Author</th>
+                             <th>Search Genre</th>
+                             <th>Sort By</th>
+                             <th></th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                            <td><input type="text" v-model="filter.Title" class="form-control" /></td>
+                             <td>
+                                <input type="text" v-model="filter.Author" class="form-control" />
+                            </td>
+                             <td> 
+                                <select v-model="filter.GenreId" class="form-control">
+                        <option v-for="genre in genres" :value="genre.id">
+                            {{ genre.name }}
+                        </option>
+                    </select>
+                             </td>
+                             <td></td>
+                             <td>     
+                                <button type="button" @click="getBooks()" class="btn btn-success">
+                                    Filter
+                                </button>
+                            </td>
+                         </tr>
+                     </tbody>
+                </table>
                  <table class="table table-bordered">
                      <thead>
                          <tr>
-                             <th>Title</th>
+                            <th>Title</th>
                              <th>Author</th>
                              <th>Year</th>
                              <th></th>
@@ -47,27 +79,37 @@
      name: 'books',
      data(){
          return {
-             books: []
-             
-         }
-     },
-     mounted(){
-        this.getBooks();
-     },
-     
-     methods: {
-
-        getBooks(){
-            const filter = {
-                Author: '',
+            genres: [],
+            filter: {
+                author: '',
                 Title: '',
                 GenreId: '',
                 SortByYear: '',
                 SortByAuthor: '',
                 SortByTitle: '',
-             };
+             },
+             books: []
+         }
+     },
+     mounted(){
+        this.getBooks();
 
-            axios.get(this.$config.apiBaseUrl + '/Book', filter).then(res => {
+        this.getGenres();
+     },
+     
+     methods: {
+        getGenres(){
+            axios.get(this.$config.apiBaseUrl + '/Genre')
+            .then(res => {
+                this.genres = res.data;
+            });
+        },
+        getBooks(){
+            this.filter.author = 'ddfdfdfdfdf';
+            console.log(this.filter);
+            axios.get(this.$config.apiBaseUrl + '/Book', {params: {
+   filter: this.filter
+  }}).then(res => {
                 this.books = res.data;
             });
         },
