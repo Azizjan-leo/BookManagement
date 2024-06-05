@@ -32,7 +32,13 @@
                         </option>
                     </select>
                              </td>
-                             <td></td>
+                             <td>
+                                <select v-model="sortBy" class="form-control">
+                                    <option v-for="field in sortFields" :value="field">
+                                        {{ field }}
+                                    </option>
+                                </select>
+                             </td>
                              <td>     
                                 <button type="button" @click="getBooks()" class="btn btn-success">
                                     Filter
@@ -88,6 +94,12 @@
                 SortByAuthor: false,
                 SortByTitle: false,
              },
+             sortFields: {
+                SortByYear: 'SortByYear',
+                SortByAuthor: 'SortByAuthor',
+                SortByTitle: 'SortByTitle',
+             },
+             sortBy: '',
              books: []
          }
      },
@@ -105,12 +117,19 @@
             });
         },
         getBooks(){
-           
+            if(this.sortBy != undefined)
+            {
+                this.filter[this.sortBy] = true;
+              //  alert(this.sortBy);
+            }
+            
             axios.get(this.$config.apiBaseUrl + '/Book', {
                 params: this.filter
-            }).then(res => {
-                             this.books = res.data;
-                         });
+            }).then(res => {this.books = res.data;});
+
+            this.filter.SortByAuthor = false;
+            this.filter.SortByTitle = false;
+            this.filter.SortByYear = false;
         },
 
         deleteBook(bookId){
